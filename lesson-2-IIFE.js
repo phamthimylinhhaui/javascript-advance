@@ -87,3 +87,21 @@ app2.add("Mec")
 app2.edit(0, "BMV2")
 app2.delete(1)
 app2.get(0)
+
+(function js(x) {
+  const y = (j) => j * x;//27*3
+
+  console.log(
+    y(
+      s()
+    )
+  );
+
+  function s() {
+    return j();
+  }
+
+  function j() {
+    return x ** x;//27
+  }
+})(3)//output = 81
