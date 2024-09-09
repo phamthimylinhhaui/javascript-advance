@@ -39,3 +39,51 @@ const message = 'message' // boc phai co ; truoc IIFE neu k dung dau ; ở cuố
 }();
 
 // 6.
+// tính toàn vẹn dữ liệu => tính đóng gói
+
+// vấn đề
+const app = {
+  cars: [],// nên che dấu biến lưu trữ dữ liệu
+  add(car) {
+    this.cars.push(car)
+  },
+  edit(index, car) {
+    this.cars[index] = car
+  },
+  delete(index) {
+    this.cars.splice(index, 1)
+  }
+}
+// app.cars = null => error Uncaught TypeError: Cannot read properties of null (reading 'push')
+app.add("BMV")
+app.add("Mec")
+app.edit(0, "BMV2")
+app.delete(1)
+
+const app2 = (function () {
+  // private
+  const cars = [];
+
+  // return nhung cai ma ta muon public thoi
+  return {
+    get(index) {
+      return cars[index];
+    },
+    add(car) {
+      cars.push(car)
+    },
+    edit(index, car) {
+      cars[index] = car
+    },
+    delete(index) {
+      cars.splice(index, 1)
+    }
+  }
+})()
+
+app2.cars = null;// doan nay se k truy cap dc cars vi k public
+app2.add("BMV")
+app2.add("Mec")
+app2.edit(0, "BMV2")
+app2.delete(1)
+app2.get(0)
