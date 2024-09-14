@@ -4,6 +4,7 @@
 // 2. Ứng dụng
 // - Viết code ngắn gọn hơn
 // - Biều diễn, ứng dụng tính private trong OOP
+// => không cho phép truy cập các dl không public ra ngoài
 //
 // 3. Tóm tắt
 //
@@ -81,4 +82,22 @@ profileSetting.set('address', 'nam dinh');
 profileSetting.delete('address');
 console.log(profileSetting.get('fullname'));
 
+//2.exam private
+
+function createApp() {
+    const cars = [];
+
+    return {
+        add(value) {
+            cars.push(value)
+        },
+        show() {
+            console.log(cars)
+        }
+    }
+}
+const app = createApp();
+app.add('bmv');
+app.add('honda');
+app.show();
 
