@@ -31,3 +31,23 @@ const counter1 = createCounter();//gan function createCounter
 console.log(counter1())//1
 console.log(counter1())//2
 console.log(counter1())//3
+
+// 2. log type
+
+function createLog(namespace) {
+    function logger(message) {
+        console.log(`[${namespace}]: ${message}`)
+    }
+
+    return logger;
+}
+
+const infoLogger = createLog('Info');
+infoLogger('register cong');
+infoLogger('gui mail thanh cong');
+
+const errorLogger = createLog('Error');
+errorLogger('register that bai');
+errorLogger('gui mail that bai');
+
+
