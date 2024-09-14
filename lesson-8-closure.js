@@ -13,3 +13,21 @@
 // - Biến được tham chiếu (refer) trong closure sẽ không được xóa khỏi bộ nhớ khi hàm cha thực thi xong
 // - Các khái niệm js nâng cao rất dễ gây nhầm lẫn
 
+// 1.
+function createCounter() {
+    let counter = 0;
+
+    function increase() {
+        counter = counter + 1;
+        return counter;
+    }
+
+    return increase;//return function increase
+}
+
+//tao ra moi truong thuc thi moi, tham chieu den gia tri moi nhat cua counter
+const counter1 = createCounter();//gan function createCounter
+
+console.log(counter1())//1
+console.log(counter1())//2
+console.log(counter1())//3
