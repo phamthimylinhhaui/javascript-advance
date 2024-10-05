@@ -3,6 +3,9 @@
 // - Có thể nhận đối số như hàm ban đầu
 
 // example
+// - bind document object
+// - Vi du dom listen event
+// - Vi du ket hom dom listen event + object method + IIFE
 
 this.firstName = "pham";
 this.lastName = "lan";
@@ -44,3 +47,62 @@ button.onclick = function () {
 
 button.onclick = Teacher.getFullName //undefine undefine do this tham chieu den doi tuong button, do do button k co firstname lastname
 button.onclick = Teacher.getFullName.bind(Teacher) //linh linh
+
+//ứng dụng
+// 1
+const $ = document.querySelector.bind(document)
+const error = document.querySelector
+console.log($('#heading'))
+// console.log(error('#heading')) tro den doi tuong window va no k context => bao loi
+
+// 2. quan ly oto (dung IIFE)
+const app = (()=> {
+    const cars = ['bmv'];
+    const root = $('#root');
+    const input = $('#input');
+    const submit = $('#submit');
+    return {
+        add(car) {
+            cars.push(car);
+        },
+        delete(index) {
+            cars.splice(index, 1);
+        },
+        render() {
+            const html = cars.map((car, index) => `<li>
+                ${car}
+                <span class="delete" data-index="${index}">x</span>
+                </li>`).join('\n');
+            root.innerHTML = html;
+        },
+        handleDelete(e) {
+            const btnDelete = e.target.closest('.delete');
+            if (btnDelete) {
+                const index = btnDelete.dataset.index;
+                console.log(index);
+                this.delete(index);//err without bind vi this o day la the ul
+                this.render()
+            }
+
+        },
+        init() {
+            const _this = this;//cach 1
+            // submit.onclick = function () {
+            submit.onclick = () => { //cach 1
+                const car = input.value;
+                this.add(car);//error this.add is not a function vi this o day la cua doi tuong submit
+                this.render();
+
+                // _this.add(car)
+                input.value = '';
+                input.focus();
+            }
+
+            root.onclick = this.handleDelete.bind(this)//this o day la app thay vi ul
+
+            this.render()
+        }
+    }
+})()
+
+app.init();
