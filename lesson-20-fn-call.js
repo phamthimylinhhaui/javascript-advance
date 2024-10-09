@@ -1,3 +1,4 @@
+// 'use strict';
 // Overview
 // - Là phương thức trong prototype của function constructor, phương thc này được dùng để gọi hàm và cũng có thể bind this cho hàm
 
@@ -32,3 +33,12 @@ console.log(me.getFullName())
 console.log(me.getFullName.call())// this o day la window nen k co
 console.log(me.getFullName.call(me))
 console.log(me.getFullName.call(teacher))//john
+
+this.name = 'linh global';
+
+function getName() {
+    return this.name;
+}
+
+// console.log(getName())// trong strict mode la undefine
+console.log(getName.call(this))// van ok khi chu dong rang buoc
