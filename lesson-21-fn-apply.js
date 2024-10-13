@@ -77,5 +77,23 @@ console.log(parrot1.weight)
     - Trả về hàm mới với 'this' tham chiếu tới thisArg
     - Không thực hiện gọi hàm
     - Nếu được bind kèm arg1, arg2 thì ưu tiên các đối số này hơn
+
+    const newFn = fn.bind(thisArg, arg1, arg2, ...);
+    newFn(arg1, arg2)
  */
 
+/*
+- call
+    - Thực hiện bind với this và thực hiện gọi hàm
+    - Nhận các đối số từ hàm gốc: arg1, arg2
+
+    fn.call(thisArg, arg1, arg2)
+ */
+
+/*
+- apply
+    - Thực hiện bind với this và thực hiện gọi hàm
+    - Nhận các đối số từ hàm gốc là dạng mảng: [arg1, arg2]
+
+    fn.apply(thisArg, [arg1, arg2])
+ */
